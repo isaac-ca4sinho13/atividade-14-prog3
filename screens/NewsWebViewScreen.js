@@ -1,0 +1,21 @@
+import React from 'react';
+import { Platform, View, Button, StyleSheet, Linking } from 'react-native';
+import { WebView } from 'react-native-webview';
+
+export default function NewsWebViewScreen({ route }) {
+  const { url } = route.params;
+
+  if (Platform.OS === 'web') {
+    return (
+      <View style={styles.center}>
+        <Button title="Notícia completa" onPress={() => Linking.openURL(url)} />
+      </View>
+    );
+  }
+
+  return <WebView source={{ uri: url }} style={{ flex: 1 }} />;
+}
+
+const styles = StyleSheet.create({
+  center: { flex: 1, alignItems: 'center', justifyContent: 'center' },
+});
